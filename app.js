@@ -18,16 +18,16 @@ const isAnimal =(req,res,next)=>{
         console.log("we have this animal")
         next()
     }else{
-        status = "adding the animal"
-        animals.push(req.params.name),
-        console.log("adding the animals")
+        status = "animal is not on the list"
+        // console.log("adding the animals")
         next()
     }
 }
 
 app.get("/animals/:name",isAnimal,(req,res)=>{
     res.json({status:status,
-            message:animals.includes(req.params.name),animals})
+            message:animals.includes(req.params.name),
+            animals: animals})
 })
 
 
