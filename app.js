@@ -52,18 +52,23 @@ const handleQueue =(req,res,next)=>{
     if(req.params.parameter === "peek"){
         res.json({status:"success",
                 data: people[people.length-1]})
+                // next()
     }else if (req.params.parameter==="dequeued"){
         res.json({status:"success",
                 dequeued:people.pop()
         })
+        // next()
     }else if(req.params.parameter==="enqueued"){
         people.unshift(req.query.name)
        res.json(
            {status:"success",
            enqueued:people[0]}
-        )}
+           )
+        //    next()
+        }
     next()
 }
+
 
 app.get("/queue/:parameter",handleQueue,(req,res)=>{
     res.json(people)
